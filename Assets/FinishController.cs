@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,10 @@ public class FinishController : MonoBehaviour
 
     // Bölüm geçmek için gereken puan miktarý (Inspector'dan ayarlanabilir)
     [SerializeField] int requiredScore;
+
+    [SerializeField] TextMeshProUGUI skorText;
+
+    
 
     // Oyuncu bir nesneye çarptýðýnda bu fonksiyon çalýþýr
     private void OnTriggerEnter(Collider other)
@@ -28,6 +33,16 @@ public class FinishController : MonoBehaviour
         {
             currentScore++; // Skoru bir artýr
             Destroy(other.gameObject); // Nesneyi sahneden sil (örneðin bir elmas)
+            skorText.text = currentScore + "/" + requiredScore;
+        }
+
+        if (other.gameObject.CompareTag("engel"))
+        {
+            int thisScene = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(thisScene);
         }
     }
+
+    
 }
+
