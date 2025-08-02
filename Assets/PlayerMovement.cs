@@ -6,10 +6,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     // Yerdeyken hareket hýzý
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float moveForce = 15f;
 
     // Zýplama hýzý (yani yukarý doðru ne kadar güçlü zýplanacaðý)
-    [SerializeField] private float jumpSpeed = 5f;
+    [SerializeField] private float jumpForce  = 5f;
 
     // Oyuncu þu anda yerde mi? Bunu kontrol ederiz ki sadece yerdeyken zýplasýn
     [SerializeField] private bool isGrounded;
@@ -21,26 +22,29 @@ public class PlayerMovement : MonoBehaviour
         float verticalMove = Input.GetAxisRaw("Vertical");     // W-S veya Ýleri-Geri
 
         // Hareket yönü (x ve z ekseni) ve hýz çarpýmý
-        Vector3 move = new Vector3(horizontalMove, 0f, verticalMove).normalized * speed;
+        Vector3 moveInput = new Vector3(horizontalMove, 0f, verticalMove).normalized ;
 
-        float yVelocity;
+        Vector3 force = moveInput * moveForce;
+
+        rb.AddForce(force);
+
+        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        if (horizontalVelocity.magnitude > maxSpeed)
+        {
+            horizontalVelocity = horizontalVelocity.normalized * maxSpeed;
+            rb.linearVelocity = new Vector3(horizontalVelocity.x, rb.linearVelocity.y, horizontalVelocity.z);
+        }
+
 
         // Space tuþuna basýlýrsa ve oyuncu yerdeyse zýplama baþlar
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            yVelocity = jumpSpeed; // yukarý doðru hýz ver
+
+            rb.AddForce(Vector3.up * jumpForce , ForceMode.Impulse);
             isGrounded = false;    // artýk havadayýz
         }
-        else
-        {
-            yVelocity = rb.linearVelocity.y; // y ekseni hýzýný koru (örneðin düþerken)
-        }
 
-        // Yeni hýz vektörü (x ve z ekseni için hareket + y ekseni için zýplama/düþme)
-        Vector3 velocity = new Vector3(move.x, yVelocity, move.z);
 
-        // Rigidbody'nin hýzýný ayarla (karakteri hareket ettir)
-        rb.linearVelocity = velocity;
     }
 
     // Bir yere çarpýldýðýnda çaðrýlýr
