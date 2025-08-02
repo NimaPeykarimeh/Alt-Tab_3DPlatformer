@@ -926,8 +926,12 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8810717981099316896, guid: 8c63ee4b64cee3a45a384d6dd63eaf4c, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810717981099316896, guid: 8c63ee4b64cee3a45a384d6dd63eaf4c, type: 3}
       propertyPath: m_LinearDamping
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
