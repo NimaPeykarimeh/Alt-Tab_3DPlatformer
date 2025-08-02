@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Score
+  - Obstacle
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
