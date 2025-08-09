@@ -8,6 +8,7 @@ TagManager:
   - Score
   - Obstacle
   - Checkpoint
+  - Grabbable
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
