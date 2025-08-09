@@ -4,11 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Ground
-  - Score
   - Obstacle
-  - Checkpoint
-  - Grabbable
+  - Ground
   layers:
   - Default
   - TransparentFX
