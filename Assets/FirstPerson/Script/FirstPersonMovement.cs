@@ -4,6 +4,10 @@ public class FirstPersonMovement : MonoBehaviour
 {
     // Oyuncunun hareketi ve fiziksel etkileşimleri için değişkenler
     [SerializeField] float moveSpeed = 4f; // Hareket hızı
+
+    [SerializeField] float walkSpeed = 3f;
+    [SerializeField] float runSpeed = 5f;
+
     CharacterController characterController; // Karakter kontrol bileşeni
 
     [SerializeField] float gravity = -9.81f; // Yerçekimi kuvveti
@@ -19,13 +23,28 @@ public class FirstPersonMovement : MonoBehaviour
     {
         // Karakter kontrol bileşenini al
         characterController = GetComponent<CharacterController>();
+        moveSpeed = walkSpeed;
     }
 
     void Update()
     {
+        HandleRun();
+
         // Her karede zeminde olup olmadığını ve hareketi kontrol et
         IsGrounded();
         MovePlayer();
+    }
+
+    private void HandleRun()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            moveSpeed = runSpeed;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            moveSpeed = walkSpeed;
+        }
     }
 
     private void MovePlayer()
