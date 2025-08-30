@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
             float randomZ = Random.Range(-spawnRange, spawnRange);
             float positionY = 1.5f;
 
-            randomPosition = new Vector3(randomX,positionY,randomZ);
+            randomPosition = transform.position + new Vector3(randomX,positionY,randomZ);
 
             maxTry--;
 
