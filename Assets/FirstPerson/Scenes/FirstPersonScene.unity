@@ -346,6 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1255000293}
   rayDistance: 100
+  hitParticlePrefab: {fileID: 2025885169013564030, guid: 0923a4f766e4a4b4ca0d2b2e87b215a5, type: 3}
 --- !u!114 &191403995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70997,7 +70998,7 @@ Transform:
   m_GameObject: {fileID: 1258176077}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -50.03, y: 6.37, z: -2.42}
+  m_LocalPosition: {x: -50.03, y: -0.82, z: -2.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
